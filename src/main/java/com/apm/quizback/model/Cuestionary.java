@@ -37,6 +37,6 @@ public class Cuestionary {
 	@JoinTable (name= "tag_cuestionary",
 			joinColumns= {@JoinColumn(name= "idCuestionary")},
 			inverseJoinColumns= {@JoinColumn(name= "idTag")})
-	private List<Cuestionary> cuestionary;
+	private List<Tag> tag;
 	
 }
