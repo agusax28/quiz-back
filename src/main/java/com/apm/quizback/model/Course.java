@@ -26,6 +26,9 @@ public class Course {
 	
 	@Column(nullable = false)
 	private String name;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = Cuestionary.FIELD_COURSE)
+	private List<Cuestionary> cuestionary;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = Result.FIELD_COURSE)
 	private List<Result> result;
