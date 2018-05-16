@@ -37,6 +37,6 @@ public class Course {
 	@JoinTable (name= "user_course",
 			joinColumns= {@JoinColumn(name= "idCourse")},
 			inverseJoinColumns= {@JoinColumn(name= "idUser")})
-	private List<Course> course;
+	private List<User> user;
 	
 }
