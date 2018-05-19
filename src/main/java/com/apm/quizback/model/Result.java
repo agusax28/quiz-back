@@ -19,19 +19,24 @@ import lombok.Setter;
 @Entity
 public class Result {
 
-	public static final String FIELD_COURSE = "course";
+	public static final String FIELD_USER = "user";
+	public static final String FIELD_CUESTIONARY = "cuestionary";
 
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private Integer idResult;
 	
 	private float score;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 
-	@JoinColumn(name = FIELD_COURSE)
+	@JoinColumn(name = FIELD_USER)
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Course course;
+	private User user;
+	
+	@JoinColumn(name = FIELD_CUESTIONARY)
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Cuestionary cuestionary;
 
 }
