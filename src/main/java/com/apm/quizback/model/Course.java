@@ -22,16 +22,13 @@ public class Course {
 	
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private Integer idCourse;
 	
 	@Column(nullable = false)
 	private String name;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = Cuestionary.FIELD_COURSE)
 	private List<Cuestionary> cuestionary;
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = Result.FIELD_COURSE)
-	private List<Result> result;
 	
 	@ManyToMany
 	@JoinTable (name= "user_course",
