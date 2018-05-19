@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -24,7 +25,7 @@ public class Cuestionary {
 	
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private Integer idCuestionary;
 	
 	@Column(nullable = false)
 	private String name;
@@ -33,7 +34,10 @@ public class Cuestionary {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Course course;
 	
-	@ManyToMany
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = Result.FIELD_CUESTIONARY)
+	private List<Result> result;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable (name= "tag_cuestionary",
 			joinColumns= {@JoinColumn(name= "idCuestionary")},
 			inverseJoinColumns= {@JoinColumn(name= "idTag")})
