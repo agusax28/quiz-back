@@ -22,7 +22,7 @@ public class Tag {
 	
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private Integer idTag;
 	
 	@Column(nullable = false)
 	private String name;
@@ -30,7 +30,7 @@ public class Tag {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = Question.FIELD_TAG)
 	private List<Question> question;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable (name= "tag_cuestionary",
 			joinColumns= {@JoinColumn(name= "idTag")},
 			inverseJoinColumns= {@JoinColumn(name= "idCuestionary")})
