@@ -20,7 +20,7 @@ public class Difficulty {
 
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private Integer idDifficulty;
 	
 	@Column(nullable = false)
 	private String name;
