@@ -22,15 +22,18 @@ public class Course {
 	
 	@Id
 	@GeneratedValue
-	private Integer idCourse;
+	private Integer id;
 	
 	@Column(nullable = false)
 	private String name;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = Cuestionary.FIELD_COURSE)
 	private List<Cuestionary> cuestionary;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = Result.FIELD_COURSE)
+	private List<Result> result;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany
 	@JoinTable (name= "user_course",
 			joinColumns= {@JoinColumn(name= "idCourse")},
 			inverseJoinColumns= {@JoinColumn(name= "idUser")})
