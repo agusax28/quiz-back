@@ -25,7 +25,7 @@ public class Question {
 
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private Integer idQuestion;
 	
 	@Column(nullable = false)
 	private String name;
@@ -40,7 +40,7 @@ public class Question {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = Difficulty.FIELD_QUESTION)
 	private List<Difficulty> difficulty;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable (name= "question_cuestionary",
 			joinColumns= {@JoinColumn(name= "idQuestion")},
 			inverseJoinColumns= {@JoinColumn(name= "idCuestionary")})
