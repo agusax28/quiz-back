@@ -20,7 +20,7 @@ public class Answer {
 	
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private Integer idAnswer;
 	
 	@Column(nullable = false)
 	private String name;
