@@ -9,9 +9,6 @@ import com.apm.quizback.model.Difficulty;
 
 public interface DifficultyDAO extends PagingAndSortingRepository<Difficulty, Integer>{
 	
-	//Todos
-	Optional<Difficulty> findOrderByIdDifficultyDesc();
-	
 	//1
 	Optional<Difficulty> findOneByIdDifficulty(int id);
 	

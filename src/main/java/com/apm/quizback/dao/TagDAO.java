@@ -10,9 +10,6 @@ import com.apm.quizback.model.Tag;
 @Repository
 public interface TagDAO extends PagingAndSortingRepository<Tag, Integer> {
 
-	//Todos
-	Optional<Tag> findOrderByIdTagDesc();
-	
 	//Por nombre
 	Optional<Tag> findByNameOrderByIdTagDesc(String name);
 	

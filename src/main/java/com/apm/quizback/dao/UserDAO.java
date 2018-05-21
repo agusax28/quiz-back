@@ -9,9 +9,6 @@ import com.apm.quizback.model.User;
 
 @Repository
 public interface UserDAO extends PagingAndSortingRepository<User, Integer>{
-
-	//Todos
-	Optional<User> findOrderByNameDesc();
 	
 	//Por nombre
 	Optional<User> findOneByNameOrderByIdUserDesc(String name);

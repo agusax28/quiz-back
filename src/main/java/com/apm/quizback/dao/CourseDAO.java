@@ -9,10 +9,10 @@ import com.apm.quizback.model.Course;
 
 public interface CourseDAO extends PagingAndSortingRepository<Course, Integer>{
 	
-	//Todos
-	Optional<Course> findOrderByIdCourseDesc();
-	
 	//1
 	Optional<Course> findOneByIdCourse(int id);
+	
+	//Nombre
+	Optional<Course> findOneByName(String name);
 
 }

@@ -9,10 +9,10 @@ import com.apm.quizback.model.Cuestionary;
 
 public interface CuestionaryDAO extends PagingAndSortingRepository<Cuestionary, Integer>{
 	
-	//Todos
-	Optional<Cuestionary> findOrderByIdCuestionaryDesc();
-	
 	//1
 	Optional<Cuestionary> findOneByIdCuestionary(int id);
+	
+	//Nombre
+	Optional<Cuestionary> findOneByName(String name);
 
 }

@@ -9,11 +9,8 @@ import com.apm.quizback.model.Question;
 
 public interface QuestionDAO extends PagingAndSortingRepository<Question, Integer>{
 	
-	//Todos
-	Optional<Question> findOrderByIdQuestionDesc();
-	
 	//1
-	Optional<Question> findOneByIdQuestiony(int id);
+	Optional<Question> findOneByIdQuestion(int id);
 	
 	//Nombre
 	Optional<Question> findOneByName(String name);
