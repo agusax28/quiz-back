@@ -14,8 +14,6 @@ import com.apm.quizback.model.User;
 
 @Service
 public class UserServiceImpl implements UserService {
-	
-    //private final static Logger LOGGER = Logger.getLogger("UserService:");
 
 	@Autowired
 	UserDAO userDao;
@@ -47,5 +45,4 @@ public class UserServiceImpl implements UserService {
 		userDao.delete(t);
 	}
 	
-
 }
