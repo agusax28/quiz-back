@@ -1,7 +1,7 @@
 package com.apm.quizback.service;
 
-public interface UserService {
+import com.apm.quizback.model.User;
 
-	void test();
+public interface UserService extends AbstractService<User, Integer>{
 	
 }

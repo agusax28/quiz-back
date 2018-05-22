@@ -1,38 +1,51 @@
 package com.apm.quizback.service;
 
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.apm.quizback.dao.UserDAO;
 import com.apm.quizback.model.User;
 
 @Service
-public class UserServiceImpl implements UserService, InitializingBean {
+public class UserServiceImpl implements UserService {
+	
+    //private final static Logger LOGGER = Logger.getLogger("UserService:");
 
 	@Autowired
-	UserDAO dao;
-	
+	UserDAO userDao;
+
 	@Override
-	public void afterPropertiesSet() throws Exception {
-		test();
+	public User create(User t) {
+		return userDao.save(t);
 	}
 
 	@Override
-	public void test() {
-		final Optional<User> test = dao.findOneByNameOrderByIdUserDesc("NameTest");
-		if(!test.isPresent()) {
-			final User u = new User();
-			u.setEmail("test@g.com");
-			u.setName("NameTest");
-			u.setPassword("passTest");
-			dao.save(u);
-		}
-		
-		final Optional<User> user = dao.findOneByNameOrderByIdUserDesc("NameTest");
-		System.out.println(user.isPresent() ? user.get() : "no encontrado");
+	public void update(User t) {
+		userDao.save(t);
 	}
+
+	@Override
+	public Optional<User> findById(Integer id) {
+		return userDao.findById(id);
+	}
+
+	@Override
+	public Set<User> findAll(Pageable p) {
+		int page = p.getPageNumber();
+		int size = p.getPageSize();
+		return userDao.findAll(PageRequest.of(page, size)).stream().collect(Collectors.toSet());
+	}
+
+	@Override
+	public void delete(User t) {
+		userDao.delete(t);
+	}
+	
 
 }
