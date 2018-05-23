@@ -1,9 +1,14 @@
 package com.apm.quizback.controller;
 
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,4 +45,16 @@ public class UserController {
 		return userMapper.modelToDto(createUser);
 	}
 
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public void update(@RequestBody UserPostDTO dto) {
+		final User user = userMapper.dtoToModel(dto);
+        userService.update(user);
+    }
+	
+	@RequestMapping(value = "/{idUser}", method = RequestMethod.DELETE)
+	public void delete(@PathVariable Integer idUser) {
+		final Optional<User> user = userService.findById(idUser);
+		userService.delete(user.get());
+	}
+	
 }
