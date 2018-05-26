@@ -37,6 +37,6 @@ public class Result {
 	
 	@JoinColumn(name = FIELD_QUESTIONARY)
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Questionary cuestionary;
+	private Questionary questionary;
 
 }
