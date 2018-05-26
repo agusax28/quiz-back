@@ -31,9 +31,9 @@ public class Tag {
 	private List<Question> question;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable (name= "tag_cuestionary",
+	@JoinTable (name= "tag_questionary",
 			joinColumns= {@JoinColumn(name= "idTag")},
-			inverseJoinColumns= {@JoinColumn(name= "idCuestionary")})
-	private List<Cuestionary> cuestionary;
+			inverseJoinColumns= {@JoinColumn(name= "idQuestionary")})
+	private List<Questionary> questionary;
 
 }

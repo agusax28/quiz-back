@@ -19,13 +19,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Cuestionary {
+public class Questionary {
 
 	public static final String FIELD_COURSE = "course";
 	
 	@Id
 	@GeneratedValue
-	private Integer idCuestionary;
+	private Integer idQuestionary;
 	
 	@Column(nullable = false)
 	private String name;
@@ -34,18 +34,18 @@ public class Cuestionary {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Course course;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = Result.FIELD_CUESTIONARY)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = Result.FIELD_QUESTIONARY)
 	private List<Result> result;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable (name= "tag_cuestionary",
-			joinColumns= {@JoinColumn(name= "idCuestionary")},
+	@JoinTable (name= "tag_questionary",
+			joinColumns= {@JoinColumn(name= "idQuestionary")},
 			inverseJoinColumns= {@JoinColumn(name= "idTag")})
 	private List<Tag> tag;
 	
 	@ManyToMany
-	@JoinTable (name= "question_cuestionary",
-			joinColumns= {@JoinColumn(name= "idCuestionary")},
+	@JoinTable (name= "question_questionary",
+			joinColumns= {@JoinColumn(name= "idQuestionary")},
 			inverseJoinColumns= {@JoinColumn(name= "idQuestion")})
 	private List<Question> question;
 	

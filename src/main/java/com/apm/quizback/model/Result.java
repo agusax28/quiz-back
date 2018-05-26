@@ -20,7 +20,7 @@ import lombok.Setter;
 public class Result {
 
 	public static final String FIELD_USER = "user";
-	public static final String FIELD_CUESTIONARY = "cuestionary";
+	public static final String FIELD_QUESTIONARY = "questionary";
 
 	@Id
 	@GeneratedValue
@@ -35,8 +35,8 @@ public class Result {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private User user;
 	
-	@JoinColumn(name = FIELD_CUESTIONARY)
+	@JoinColumn(name = FIELD_QUESTIONARY)
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Cuestionary cuestionary;
+	private Questionary cuestionary;
 
 }

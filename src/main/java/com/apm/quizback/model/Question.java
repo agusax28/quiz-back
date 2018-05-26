@@ -41,9 +41,9 @@ public class Question {
 	private List<Difficulty> difficulty;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable (name= "question_cuestionary",
+	@JoinTable (name= "question_questionary",
 			joinColumns= {@JoinColumn(name= "idQuestion")},
-			inverseJoinColumns= {@JoinColumn(name= "idCuestionary")})
-	private List<Cuestionary> cuestionary;
+			inverseJoinColumns= {@JoinColumn(name= "idQuestionary")})
+	private List<Questionary> questionary;
 	
 }
