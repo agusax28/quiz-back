@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.apm.quizback.dao.UserDAO;
+import com.apm.quizback.exception.InvalidDataException;
+import com.apm.quizback.exception.NotFoundException;
 import com.apm.quizback.model.User;
 
 @Service
@@ -19,18 +21,30 @@ public class UserServiceImpl implements UserService {
 	UserDAO userDao;
 
 	@Override
-	public User create(User t) {
-		return userDao.save(t);
+	public User create(User t) throws InvalidDataException {
+		if (validate(t)) {
+			return userDao.save(t);
+		}
+		throw new InvalidDataException("User: Invalid Data");
 	}
 
 	@Override
-	public void update(User t) {
-		userDao.save(t);
+	public void update(User t) throws InvalidDataException {
+		if (validate(t)) {
+			userDao.save(t);
+		} else {
+			throw new InvalidDataException("User: Invalid Data");
+		}
 	}
 
 	@Override
-	public Optional<User> findById(Integer id) {
-		return userDao.findById(id);
+	public Optional<User> findById(Integer id) throws NotFoundException {
+		// return userDao.findById(id);
+		final Optional<User> user = userDao.findById(id);
+		if (user.isPresent()) {
+			return user;
+		}
+		throw new NotFoundException("User " + id + " not found.");
 	}
 
 	@Override
@@ -44,5 +58,9 @@ public class UserServiceImpl implements UserService {
 	public void delete(User t) {
 		userDao.delete(t);
 	}
-	
+
+	public boolean validate(User t) {
+		return t != null && t.getName() != null && t.getEmail() != null && t.getPassword() != null;
+	}
+
 }
