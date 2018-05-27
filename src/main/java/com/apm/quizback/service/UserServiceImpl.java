@@ -59,6 +59,7 @@ public class UserServiceImpl implements UserService {
 		userDao.delete(t);
 	}
 
+	@Override
 	public boolean validate(User t) {
 		return t != null && t.getName() != null && t.getEmail() != null && t.getPassword() != null;
 	}

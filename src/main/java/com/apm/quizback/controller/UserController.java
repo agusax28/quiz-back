@@ -64,10 +64,10 @@ public class UserController {
 		userService.update(user);
 	}
 
-	// @RequestMapping(value = "/{idUser}", method = RequestMethod.DELETE)
-	@DeleteMapping("/{idUser}")
-	public void delete(@PathVariable Integer idUser) throws NotFoundException {
-		final Optional<User> user = userService.findById(idUser);
+	// @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@DeleteMapping("/{id}")
+	public void delete(@PathVariable Integer id) throws NotFoundException {
+		final Optional<User> user = userService.findById(id);
 		userService.delete(user.get());
 	}
 
