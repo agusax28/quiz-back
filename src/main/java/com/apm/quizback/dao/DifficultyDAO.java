@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.apm.quizback.model.Difficulty;
 
+@Repository
 public interface DifficultyDAO extends PagingAndSortingRepository<Difficulty, Integer>{
 	
 	//1

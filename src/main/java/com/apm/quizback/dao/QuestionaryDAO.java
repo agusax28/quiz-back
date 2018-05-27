@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.apm.quizback.model.Questionary;
 
+@Repository
 public interface QuestionaryDAO extends PagingAndSortingRepository<Questionary, Integer>{
 	
 	//1

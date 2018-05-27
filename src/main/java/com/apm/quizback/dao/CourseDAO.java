@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.apm.quizback.model.Course;
 
+@Repository
 public interface CourseDAO extends PagingAndSortingRepository<Course, Integer>{
 	
 	//1
