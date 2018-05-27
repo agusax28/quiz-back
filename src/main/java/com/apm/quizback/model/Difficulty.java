@@ -1,12 +1,13 @@
 package com.apm.quizback.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,8 +16,6 @@ import lombok.Setter;
 @Setter
 @Entity
 public class Difficulty {
-	
-	public static final String FIELD_QUESTION = "question";
 
 	@Id
 	@GeneratedValue
@@ -25,7 +24,6 @@ public class Difficulty {
 	@Column(nullable = false)
 	private String name;
 	
-	@JoinColumn(name = FIELD_QUESTION)
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Question question;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = Question.FIELD_DIFFICULTY)
+	private List<Question> question;
 }

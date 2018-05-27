@@ -22,6 +22,8 @@ import lombok.Setter;
 public class Question {
 	
 	public static final String FIELD_TAG = "tag";
+	
+	public static final String FIELD_DIFFICULTY = "difficulty";
 
 	@Id
 	@GeneratedValue
@@ -37,8 +39,9 @@ public class Question {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = Answer.FIELD_QUESTION)
 	private List<Answer> answer;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = Difficulty.FIELD_QUESTION)
-	private List<Difficulty> difficulty;
+	@JoinColumn(name = FIELD_DIFFICULTY)
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Difficulty difficulty;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable (name= "question_questionary",
