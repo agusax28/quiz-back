@@ -1,4 +1,4 @@
-package com.apm.quizback.service;
+package com.apm.quizback.service.user;
 
 import java.util.Optional;
 import java.util.Set;

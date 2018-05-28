@@ -1,4 +1,4 @@
-package com.apm.quizback.service;
+package com.apm.quizback.service.questionary;
 
 import java.util.Optional;
 import java.util.Set;
@@ -61,7 +61,8 @@ public class QuestionaryServiceImpl implements QuestionaryService {
 
 	@Override
 	public boolean validate(Questionary t) {
-		return t != null && t.getName() != null && t.getCourse() != null;
+		//return t != null && t.getName() != null && t.getCourse() != null;
+		return t != null && t.getName() != null;
 	}
 
 }

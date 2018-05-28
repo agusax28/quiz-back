@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.apm.quizback.component.mapper.questionary.QuestionaryMapper;
@@ -20,7 +21,7 @@ import com.apm.quizback.dto.QuestionaryDTO;
 import com.apm.quizback.exception.InvalidDataException;
 import com.apm.quizback.exception.NotFoundException;
 import com.apm.quizback.model.Questionary;
-import com.apm.quizback.service.QuestionaryService;
+import com.apm.quizback.service.questionary.QuestionaryService;
 
 @RestController
 @RequestMapping(value = "/questionary")
@@ -33,6 +34,7 @@ public class QuestionaryController {
 	QuestionaryMapper questionaryMapper;
 
 	@GetMapping
+	@ResponseBody
 	public Set<QuestionaryDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
 			@RequestParam(defaultValue = "10", required = false) Integer size) {
 		final Set<Questionary> questionary = questionaryService.findAll(PageRequest.of(page, size));

@@ -20,7 +20,7 @@ import com.apm.quizback.dto.QuestionDTO;
 import com.apm.quizback.exception.InvalidDataException;
 import com.apm.quizback.exception.NotFoundException;
 import com.apm.quizback.model.Question;
-import com.apm.quizback.service.QuestionService;
+import com.apm.quizback.service.question.QuestionService;
 
 @RestController
 @RequestMapping(value = "/question")

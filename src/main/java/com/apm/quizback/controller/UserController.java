@@ -21,7 +21,7 @@ import com.apm.quizback.dto.UserPostDTO;
 import com.apm.quizback.exception.InvalidDataException;
 import com.apm.quizback.exception.NotFoundException;
 import com.apm.quizback.model.User;
-import com.apm.quizback.service.UserService;
+import com.apm.quizback.service.user.UserService;
 
 @RestController
 @RequestMapping(value = "/user")
