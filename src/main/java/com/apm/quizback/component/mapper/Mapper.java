@@ -1,5 +1,6 @@
 package com.apm.quizback.component.mapper;
 
+import java.util.List;
 import java.util.Set;
 
 public interface Mapper<M, D> {
@@ -15,5 +16,9 @@ public interface Mapper<M, D> {
 	Class<? extends D> dtoClazz();
 
 	Class<? extends M> modelClazz();
+	
+	List<M> dtoToModel(List<D> dtos);
+
+	List<D> modelToDto(List<M> models);
 
 }
