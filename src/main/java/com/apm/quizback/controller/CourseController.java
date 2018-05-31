@@ -16,10 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.apm.quizback.component.mapper.course.CourseMapper;
+import com.apm.quizback.component.mapper.user.UserMapper;
 import com.apm.quizback.dto.CourseDTO;
+import com.apm.quizback.dto.UserDTO;
 import com.apm.quizback.exception.InvalidDataException;
 import com.apm.quizback.exception.NotFoundException;
 import com.apm.quizback.model.Course;
+import com.apm.quizback.model.User;
 import com.apm.quizback.service.course.CourseService;
 
 @RestController
@@ -31,6 +34,9 @@ public class CourseController {
 	
 	@Autowired
 	CourseMapper courseMapper;
+
+	@Autowired
+	UserMapper userMapper;
 	
 	@GetMapping
 	public Set<CourseDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
@@ -45,11 +51,25 @@ public class CourseController {
 		return courseMapper.modelToDto(course.get());
 	}
 	
+	@GetMapping("/{id}/user")
+	public Set<UserDTO> findCourseUser(@RequestParam(defaultValue = "0", required= false ) Integer page, 
+			 @RequestParam(defaultValue = "10", required = false ) Integer size,
+			 @PathVariable("id") Integer id) throws NotFoundException {
+		final Set<User> users = courseService.findCourseUsers(PageRequest.of(page, size), id);
+		return userMapper.modelToDto(users);
+	}
+	
 	@PostMapping
 	public CourseDTO create(@RequestBody CourseDTO dto) throws InvalidDataException {
 		final Course course = courseMapper.dtoToModel(dto);
 		final Course createCourse = courseService.create(course);
 		return courseMapper.modelToDto(createCourse);
+	}
+	
+	@PostMapping("/{id}/user/{idUser}")
+	public void createCourseUser(@PathVariable("id") Integer id, @PathVariable("idUser") Integer idUser) throws NotFoundException {
+		final Optional<Course> course = courseService.findById(id);
+		courseService.setCourseUser(course.get(), idUser);
 	}
 	
 	@PutMapping("/{id}")

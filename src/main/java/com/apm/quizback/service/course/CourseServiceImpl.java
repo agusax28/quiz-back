@@ -1,10 +1,12 @@
 package com.apm.quizback.service.course;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -13,12 +15,17 @@ import com.apm.quizback.dao.CourseDAO;
 import com.apm.quizback.exception.InvalidDataException;
 import com.apm.quizback.exception.NotFoundException;
 import com.apm.quizback.model.Course;
+import com.apm.quizback.model.User;
+import com.apm.quizback.service.user.UserService;
 
 @Service
 public class CourseServiceImpl implements CourseService {
 
 	@Autowired
 	CourseDAO courseDao;
+	
+	@Autowired
+	UserService userService;
 
 	@Override
 	public Course create(Course t) throws InvalidDataException {
@@ -64,4 +71,25 @@ public class CourseServiceImpl implements CourseService {
 		return t != null && t.getName() != null;
 	}
 
+	@Override
+	public Set<User> findCourseUsers(Pageable p, Integer id) throws NotFoundException {
+		int page = p.getPageNumber();
+		int size = p.getPageSize();
+		Optional<Course> course = courseDao.findById(id);
+		if(course.isPresent()) {
+			List<User> users = course.get().getUser();
+			return new PageImpl<User>(users, PageRequest.of(page, size), users.size()).stream().collect(Collectors.toSet());
+		}
+		throw new NotFoundException("Course " + id + " not found.");
+	}
+
+	@Override
+	public void setCourseUser(Course course, Integer idUser) throws NotFoundException {
+		if (validate(course)) {
+			Optional<User> user = userService.findById(idUser);
+			course.getUser().add(user.get());
+			courseDao.save(course);
+		}
+	}
+	
 }
