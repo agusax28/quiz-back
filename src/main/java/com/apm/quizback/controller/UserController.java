@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.apm.quizback.component.mapper.user.UserMapper;
-import com.apm.quizback.dto.UserDTO;
-import com.apm.quizback.dto.UserPostDTO;
+import com.apm.quizback.dto.user.UserDTO;
+import com.apm.quizback.dto.user.UserPostDTO;
 import com.apm.quizback.exception.InvalidDataException;
 import com.apm.quizback.exception.NotFoundException;
 import com.apm.quizback.model.User;
