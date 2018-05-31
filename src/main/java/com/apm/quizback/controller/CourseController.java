@@ -19,7 +19,7 @@ import com.apm.quizback.component.mapper.course.CourseMapper;
 import com.apm.quizback.component.mapper.questionary.QuestionaryMapper;
 import com.apm.quizback.component.mapper.user.UserMapper;
 import com.apm.quizback.dto.CourseDTO;
-import com.apm.quizback.dto.UserDTO;
+import com.apm.quizback.dto.user.UserDTO;
 import com.apm.quizback.exception.InvalidDataException;
 import com.apm.quizback.exception.NotFoundException;
 import com.apm.quizback.model.Course;
