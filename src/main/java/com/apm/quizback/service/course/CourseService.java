@@ -11,7 +11,7 @@ import com.apm.quizback.service.AbstractCRUDService;
 
 public interface CourseService extends AbstractCRUDService<Course, Integer> {
 
-	Set<User> findCourseUsers(Pageable p, Integer id) throws NotFoundException;
+	Set<User> findAllUser(Pageable p, Integer id) throws NotFoundException;
 
 	void setCourseUser(Course course, Integer idUser) throws NotFoundException;
 

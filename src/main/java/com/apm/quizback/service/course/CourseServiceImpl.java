@@ -72,13 +72,13 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public Set<User> findCourseUsers(Pageable p, Integer id) throws NotFoundException {
+	public Set<User> findAllUser(Pageable p, Integer id) throws NotFoundException {
 		int page = p.getPageNumber();
 		int size = p.getPageSize();
 		Optional<Course> course = courseDao.findById(id);
 		if(course.isPresent()) {
-			List<User> users = course.get().getUser();
-			return new PageImpl<User>(users, PageRequest.of(page, size), users.size()).stream().collect(Collectors.toSet());
+			List<User> user = course.get().getUser();
+			return new PageImpl<User>(user, PageRequest.of(page, size), user.size()).stream().collect(Collectors.toSet());
 		}
 		throw new NotFoundException("Course " + id + " not found.");
 	}

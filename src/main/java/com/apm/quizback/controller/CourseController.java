@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.apm.quizback.component.mapper.course.CourseMapper;
+import com.apm.quizback.component.mapper.questionary.QuestionaryMapper;
 import com.apm.quizback.component.mapper.user.UserMapper;
 import com.apm.quizback.dto.CourseDTO;
 import com.apm.quizback.dto.UserDTO;
@@ -38,6 +39,9 @@ public class CourseController {
 	@Autowired
 	UserMapper userMapper;
 	
+	@Autowired
+	QuestionaryMapper questionaryMapper;
+	
 	@GetMapping
 	public Set<CourseDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
 			@RequestParam(defaultValue = "10", required = false) Integer size) {
@@ -55,8 +59,8 @@ public class CourseController {
 	public Set<UserDTO> findCourseUser(@RequestParam(defaultValue = "0", required= false ) Integer page, 
 			 @RequestParam(defaultValue = "10", required = false ) Integer size,
 			 @PathVariable("id") Integer id) throws NotFoundException {
-		final Set<User> users = courseService.findCourseUsers(PageRequest.of(page, size), id);
-		return userMapper.modelToDto(users);
+		final Set<User> user = courseService.findAllUser(PageRequest.of(page, size), id);
+		return userMapper.modelToDto(user);
 	}
 	
 	@PostMapping
