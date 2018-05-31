@@ -1,4 +1,4 @@
-package com.apm.quizback.dto;
+package com.apm.quizback.dto.user;
 
 import lombok.Data;
 
