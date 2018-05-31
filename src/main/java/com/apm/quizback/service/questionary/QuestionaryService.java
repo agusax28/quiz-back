@@ -17,7 +17,7 @@ public interface QuestionaryService {
 
 	Questionary create(Questionary t, Integer idCourse) throws InvalidDataException, NotFoundException;
 
-	void update(Questionary t) throws InvalidDataException;
+	void update(Questionary t, Integer idCourse) throws InvalidDataException, NotFoundException;
 
 	void delete(Questionary t);
 

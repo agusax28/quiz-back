@@ -58,10 +58,10 @@ public class QuestionaryController {
 	@PutMapping("/{id}")
 	public void update(@PathVariable("id") Integer id,
 			@PathVariable("idCourse") Integer idCourse,
-			@RequestBody QuestionaryDTO dto) throws InvalidDataException {
+			@RequestBody QuestionaryDTO dto) throws InvalidDataException, NotFoundException {
 		dto.setIdQuestionary(id);
 		final Questionary questionary = questionaryMapper.dtoToModel(dto);
-		questionaryService.update(questionary);
+		questionaryService.update(questionary, idCourse);
 	}
 	
 	@DeleteMapping("/{id}")

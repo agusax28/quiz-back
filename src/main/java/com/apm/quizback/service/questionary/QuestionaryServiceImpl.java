@@ -38,8 +38,10 @@ public class QuestionaryServiceImpl implements QuestionaryService {
 	}
 
 	@Override
-	public void update(Questionary t) throws InvalidDataException {
-		if (validate(t)) {
+	public void update(Questionary t, Integer idCourse) throws InvalidDataException, NotFoundException {
+		Optional<Course> course = courseService.findById(idCourse);
+		if (validate(t) && course.isPresent()) {
+			t.setCourse(course.get());
 			questionaryDao.save(t);
 		} else {
 			throw new InvalidDataException("Questionary: Invalid Data");
