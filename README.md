@@ -23,7 +23,7 @@
 > (PUT) localhost:8080/user/{idUser}
 
 **Eliminación de usuario**
-> (Delete) localhost:8080/user/{idUser}
+> (DELETE) localhost:8080/user/{idUser}
 
 ## CRUD Curso
 **Listado de cursos:**
@@ -36,7 +36,7 @@
 > (PUT) localhost:8080/course/{idCourse}
 
 **Eliminación de curso**
-> (Delete) localhost:8080/course/{idCourse}
+> (DELETE) localhost:8080/course/{idCourse}
 
 ## Asignación de usuario a un curso
 > (POST) localhost:8080/course/{idCourse}/user/{idUser}"
@@ -52,7 +52,7 @@
 > (PUT) localhost:8080/course/{idCourse}/cuestionary/{idCuestionary}
 
 **Eliminación de cuestionario del curso**
-> (Delete) localhost:8080/course/{idCourse}/cuestionary/{idCuestionary}
+> (DELETE) localhost:8080/course/{idCourse}/cuestionary/{idCuestionary}
 
 ## Extra: CRUD TAG
 **Listado de tags:**
@@ -71,7 +71,7 @@
 > (GET) localhost:8080/course/{idCourse}/cuestionary/{idCuestionary}/tag
 
 **Asignación de tag al cuestionario**
-> (GET) localhost:8080/course/{idCourse}/cuestionary/{idCuestionary}/tag/{idTag}
+> (POST) localhost:8080/course/{idCourse}/cuestionary/{idCuestionary}/tag/{idTag}
 
 ## Extra: CRUD Difficulty
 **Listado de dificultades:**
@@ -84,4 +84,4 @@
 > (PUT) localhost:8080/difficulty/{idDifficulty}
 
 **Eliminación de dificultad**
-> (Delete) localhost:8080/difficulty/{idDifficulty}
+> (DELETE) localhost:8080/difficulty/{idDifficulty}
