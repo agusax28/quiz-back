@@ -1,16 +1,17 @@
 package com.apm.quizback.dto;
 
-import com.apm.quizback.model.Difficulty;
-import com.apm.quizback.model.Tag;
+import java.io.Serializable;
 
 import lombok.Data;
 
 @Data
-public class QuestionDTO {
+public class QuestionDTO implements Serializable{
+	
+	private static final long serialVersionUID = -4463223954672104279L;
 	
 	private Integer idQuestion;
 	private String name;
-	private Difficulty difficulty;
-	private Tag tag;
+	private DifficultyDTO difficulty;
+	private TagDTO tag;
 	
 }
