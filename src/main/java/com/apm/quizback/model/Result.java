@@ -2,6 +2,7 @@ package com.apm.quizback.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -27,6 +28,7 @@ public class Result {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idResult;
 	
+	@Column(nullable = false)
 	private float score;
 
 	@Temporal(TemporalType.TIMESTAMP)
