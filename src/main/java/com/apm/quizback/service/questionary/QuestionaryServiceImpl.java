@@ -94,4 +94,16 @@ public class QuestionaryServiceImpl implements QuestionaryService {
 		}
 	}
 
+	@Override
+	public List<Tag> findAllTags(Pageable p, Integer id) throws NotFoundException {
+		int page = p.getPageNumber();
+		int size = p.getPageSize();
+		Optional<Questionary> questionary = questionaryDao.findById(id);
+		if(questionary.isPresent()) {
+			List<Tag> tag = questionary.get().getTag();
+			return new PageImpl<Tag>(tag, PageRequest.of(page, size), tag.size()).stream().collect(Collectors.toList());
+		}
+		throw new NotFoundException("Tag " + id + " not found.");
+	}
+
 }

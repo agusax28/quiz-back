@@ -1,5 +1,6 @@
 package com.apm.quizback.service.questionary;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -8,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import com.apm.quizback.exception.InvalidDataException;
 import com.apm.quizback.exception.NotFoundException;
 import com.apm.quizback.model.Questionary;
+import com.apm.quizback.model.Tag;
 
 public interface QuestionaryService {
 
@@ -24,5 +26,7 @@ public interface QuestionaryService {
 	boolean validate(Questionary t);
 
 	void setQuestionaryTag(Questionary questionary, Integer idTag) throws NotFoundException;
+
+	List<Tag> findAllTags(Pageable p, Integer id) throws NotFoundException;
 
 }
