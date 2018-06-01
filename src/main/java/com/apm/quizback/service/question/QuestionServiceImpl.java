@@ -1,7 +1,7 @@
 package com.apm.quizback.service.question;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,10 +48,10 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public Set<Question> findAll(Pageable p) {
+	public List<Question> findAll(Pageable p) {
 		int page = p.getPageNumber();
 		int size = p.getPageSize();
-		return questionDao.findAll(PageRequest.of(page, size)).stream().collect(Collectors.toSet());
+		return questionDao.findAll(PageRequest.of(page, size)).stream().collect(Collectors.toList());
 	}
 
 	@Override
@@ -61,7 +61,8 @@ public class QuestionServiceImpl implements QuestionService {
 
 	@Override
 	public boolean validate(Question t) {
-		return t != null && t.getName() != null && t.getDifficulty() != null && t.getTag() != null;
+		//return t != null && t.getName() != null && t.getDifficulty() != null && t.getTag() != null;
+		return t != null && t.getName() != null;
 	}
 
 }

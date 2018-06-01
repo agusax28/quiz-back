@@ -16,7 +16,9 @@ import com.apm.quizback.exception.InvalidDataException;
 import com.apm.quizback.exception.NotFoundException;
 import com.apm.quizback.model.Course;
 import com.apm.quizback.model.Questionary;
+import com.apm.quizback.model.Tag;
 import com.apm.quizback.service.course.CourseService;
+import com.apm.quizback.service.tag.TagService;
 
 @Service
 public class QuestionaryServiceImpl implements QuestionaryService {
@@ -26,6 +28,9 @@ public class QuestionaryServiceImpl implements QuestionaryService {
 	
 	@Autowired
 	CourseService courseService;
+	
+	@Autowired
+	TagService tagService;
 
 	@Override
 	public Questionary create(Questionary t, Integer idCourse) throws InvalidDataException, NotFoundException {
@@ -78,6 +83,15 @@ public class QuestionaryServiceImpl implements QuestionaryService {
 	@Override
 	public boolean validate(Questionary t) {
 		return t != null && t.getName() != null;
+	}
+
+	@Override
+	public void setQuestionaryTag(Questionary questionary, Integer idTag) throws NotFoundException {
+		if (validate(questionary)) {
+			Optional<Tag> tag = tagService.findById(idTag);
+			questionary.getTag().add(tag.get());
+			questionaryDao.save(questionary);
+		}
 	}
 
 }

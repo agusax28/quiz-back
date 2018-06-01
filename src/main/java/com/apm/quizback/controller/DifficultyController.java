@@ -1,7 +1,7 @@
 package com.apm.quizback.controller;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -35,9 +35,9 @@ public class DifficultyController {
 
 	@GetMapping
 	@ResponseBody
-	public Set<DifficultyDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
+	public List<DifficultyDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
 			@RequestParam(defaultValue = "10", required = false) Integer size) {
-		final Set<Difficulty> difficulty = difficultyService.findAll(PageRequest.of(page, size));
+		final List<Difficulty> difficulty = difficultyService.findAll(PageRequest.of(page, size));
 		return difficultyMapper.modelToDto(difficulty);
 	}
 

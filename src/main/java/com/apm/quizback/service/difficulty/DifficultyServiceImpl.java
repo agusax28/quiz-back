@@ -1,7 +1,7 @@
 package com.apm.quizback.service.difficulty;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,10 +44,10 @@ public class DifficultyServiceImpl implements DifficultyService {
 		throw new NotFoundException("Course " + id + " not found.");
 	}
 
-	public Set<Difficulty> findAll(Pageable p) {
+	public List<Difficulty> findAll(Pageable p) {
 		int page = p.getPageNumber();
 		int size = p.getPageSize();
-		return difficultyDao.findAll(PageRequest.of(page, size)).stream().collect(Collectors.toSet());
+		return difficultyDao.findAll(PageRequest.of(page, size)).stream().collect(Collectors.toList());
 	}
 
 	public void delete(Difficulty t) {

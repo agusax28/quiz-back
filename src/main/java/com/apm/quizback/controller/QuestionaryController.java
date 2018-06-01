@@ -47,12 +47,22 @@ public class QuestionaryController {
 		return questionaryMapper.modelToDto(questionary.get());
 	}
 	
+	@GetMapping("/tag")
+	
 	@PostMapping
 	public QuestionaryDTO create(@RequestBody QuestionaryDTO dto, 
 			@PathVariable("idCourse") Integer idCourse) throws InvalidDataException, NotFoundException {
 		final Questionary questionary = questionaryMapper.dtoToModel(dto);
 		final Questionary createQuestionary = questionaryService.create(questionary, idCourse);
 		return questionaryMapper.modelToDto(createQuestionary);
+	}
+	
+	@PostMapping("/{id}/tag/{idTag}")
+	public void createQuestionaryTag(@PathVariable("id") Integer id, 
+			@PathVariable("idCourse") Integer idCourse, 
+			@PathVariable("idTag") Integer idTag) throws NotFoundException {
+		final Optional<Questionary> questionary = questionaryService.findById(id, idCourse);
+		questionaryService.setQuestionaryTag(questionary.get(), idTag);
 	}
 	
 	@PutMapping("/{id}")

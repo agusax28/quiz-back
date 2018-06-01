@@ -1,7 +1,7 @@
 package com.apm.quizback.service.user;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,10 +48,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Set<User> findAll(Pageable p) {
+	public List<User> findAll(Pageable p) {
 		int page = p.getPageNumber();
 		int size = p.getPageSize();
-		return userDao.findAll(PageRequest.of(page, size)).stream().collect(Collectors.toSet());
+		return userDao.findAll(PageRequest.of(page, size)).stream().collect(Collectors.toList());
 	}
 
 	@Override

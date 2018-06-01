@@ -1,5 +1,6 @@
 package com.apm.quizback.controller;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -43,9 +44,9 @@ public class CourseController {
 	QuestionaryMapper questionaryMapper;
 	
 	@GetMapping
-	public Set<CourseDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
+	public List<CourseDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
 			@RequestParam(defaultValue = "10", required = false) Integer size) {
-		final Set<Course> course = courseService.findAll(PageRequest.of(page, size));
+		final List<Course> course = courseService.findAll(PageRequest.of(page, size));
 		return courseMapper.modelToDto(course);
 	}
 	

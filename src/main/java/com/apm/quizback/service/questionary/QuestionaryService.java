@@ -23,4 +23,6 @@ public interface QuestionaryService {
 
 	boolean validate(Questionary t);
 
+	void setQuestionaryTag(Questionary questionary, Integer idTag) throws NotFoundException;
+
 }
