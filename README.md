@@ -38,6 +38,9 @@
 **Eliminación de curso**
 > (DELETE) localhost:8080/course/{idCourse}
 
+**Listado de usuarios del curso**
+> (GET) localhost:8080/course/{idCourse}/user
+
 ## Asignación de usuario a un curso
 > (POST) localhost:8080/course/{idCourse}/user/{idUser}"
 
