@@ -46,16 +46,16 @@
 
 ## CRUD Cuestionario
 **Listado de cuestionarios del curso:**
-> (GET) localhost:8080/course/{idCourse}/cuestionary
+> (GET) localhost:8080/course/{idCourse}/questionary
 
 **Creación de cuestionario del curso**
-> (POST) localhost:8080/course/{idCourse}/cuestionary
+> (POST) localhost:8080/course/{idCourse}/questionary
 
 **Edición de cuestionario del curso**
-> (PUT) localhost:8080/course/{idCourse}/cuestionary/{idCuestionary}
+> (PUT) localhost:8080/course/{idCourse}/questionary/{idQuestionary}
 
 **Eliminación de cuestionario del curso**
-> (DELETE) localhost:8080/course/{idCourse}/cuestionary/{idCuestionary}
+> (DELETE) localhost:8080/course/{idCourse}/questionary/{idQuestionary}
 
 ## Extra: CRUD TAG
 **Listado de tags:**
@@ -71,10 +71,10 @@
 > (Delete) localhost:8080/tag/{idTag}
 
 **Listado de tags del cuestionario**
-> (GET) localhost:8080/course/{idCourse}/cuestionary/{idCuestionary}/tag
+> (GET) localhost:8080/course/{idCourse}/questionary/{idQuestionary}/tag
 
 **Asignación de tag al cuestionario**
-> (POST) localhost:8080/course/{idCourse}/cuestionary/{idCuestionary}/tag/{idTag}
+> (POST) localhost:8080/course/{idCourse}/questionary/{idQuestionary}/tag/{idTag}
 
 ## Extra: CRUD Difficulty
 **Listado de dificultades:**
