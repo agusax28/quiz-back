@@ -32,15 +32,17 @@ public class QuestionController {
 	@Autowired
 	QuestionMapper questionMapper;
 	
-	@GetMapping
+	@GetMapping("/cuestionary/{idQuestionary}/question")
 	public List<QuestionDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
-			@RequestParam(defaultValue = "10", required = false) Integer size) {
-		final List<Question> question = questionService.findAll(PageRequest.of(page, size));
+			@RequestParam(defaultValue = "10", required = false) Integer size,
+			@PathVariable ("idQuestionary") Integer idQuestionary) throws NotFoundException {
+		final List<Question> question = questionService.findAll(PageRequest.of(page, size), idQuestionary);
 		return questionMapper.modelToDto(question);
 	}
 	
-	@GetMapping("/{id}")
-	public QuestionDTO findById(@PathVariable Integer id) throws NotFoundException {
+	@GetMapping("/question/{id}")
+	public QuestionDTO findById(@PathVariable Integer id,
+			@PathVariable ("idQuestionary") Integer idQuestionary) throws NotFoundException {
 		final Optional<Question> question = questionService.findById(id);
 		return questionMapper.modelToDto(question.get());
 	}
@@ -52,7 +54,6 @@ public class QuestionController {
 		return questionMapper.modelToDto(createQuestion);
 	}
 
-	// @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@PutMapping("/{id}")
 	public void update(@PathVariable Integer id, @RequestBody QuestionDTO dto) throws InvalidDataException {
 		dto.setIdQuestion(id);
@@ -60,7 +61,6 @@ public class QuestionController {
 		questionService.update(question);
 	}
 
-	// @RequestMapping(value = "/{idUser}", method = RequestMethod.DELETE)
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Integer id) throws NotFoundException {
 		final Optional<Question> question = questionService.findById(id);
