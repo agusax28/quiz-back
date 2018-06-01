@@ -1,11 +1,13 @@
 # CursoJava - atSistemas (quiz-back)
 
 ## Requisitos
-- 3 CRUD completos (usuarios, cuestionarios y preguntas)
+- [ ] 3 CRUD completos (usuarios, cuestionarios y preguntas)
 	- [x] Usuarios
 	- [x] Cuestionarios
 	- [ ] Preguntas
 - [x] Creación de cursos (alumnos, cuestionarios)
+	- [x] Alumnos (usuarios) asignados a curso
+	- [x] Al crear el cuestionario, es asignado en el curso (se crea dentro del curso)
 - [ ] Recuperación resultados curso
 - [ ] Petición preguntas de cuestionario 1 a 1 (aleatorio)
 - [ ] Petición preguntas de cuestionario todo.
