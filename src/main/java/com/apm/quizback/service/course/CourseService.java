@@ -1,5 +1,6 @@
 package com.apm.quizback.service.course;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.data.domain.Pageable;
@@ -11,7 +12,7 @@ import com.apm.quizback.service.AbstractCRUDService;
 
 public interface CourseService extends AbstractCRUDService<Course, Integer> {
 
-	Set<User> findAllUser(Pageable p, Integer id) throws NotFoundException;
+	List<User> findAllUser(Pageable p, Integer id) throws NotFoundException;
 
 	void setCourseUser(Course course, Integer idUser) throws NotFoundException;
 

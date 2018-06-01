@@ -2,7 +2,6 @@ package com.apm.quizback.service.course;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,13 +71,13 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public Set<User> findAllUser(Pageable p, Integer id) throws NotFoundException {
+	public List<User> findAllUser(Pageable p, Integer id) throws NotFoundException {
 		int page = p.getPageNumber();
 		int size = p.getPageSize();
 		Optional<Course> course = courseDao.findById(id);
 		if(course.isPresent()) {
 			List<User> user = course.get().getUser();
-			return new PageImpl<User>(user, PageRequest.of(page, size), user.size()).stream().collect(Collectors.toSet());
+			return new PageImpl<User>(user, PageRequest.of(page, size), user.size()).stream().collect(Collectors.toList());
 		}
 		throw new NotFoundException("Course " + id + " not found.");
 	}

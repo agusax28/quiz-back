@@ -57,10 +57,10 @@ public class CourseController {
 	}
 	
 	@GetMapping("/{id}/user")
-	public Set<UserDTO> findCourseUser(@RequestParam(defaultValue = "0", required= false ) Integer page, 
+	public List<UserDTO> findCourseUser(@RequestParam(defaultValue = "0", required= false ) Integer page, 
 			 @RequestParam(defaultValue = "10", required = false ) Integer size,
 			 @PathVariable("id") Integer id) throws NotFoundException {
-		final Set<User> user = courseService.findAllUser(PageRequest.of(page, size), id);
+		final List<User> user = courseService.findAllUser(PageRequest.of(page, size), id);
 		return userMapper.modelToDto(user);
 	}
 	
