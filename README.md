@@ -1,16 +1,16 @@
-# CursoJava - atSistemas
-
-## Proyect: quiz-back
+# CursoJava - atSistemas (quiz-back)
 
 ## Requisitos
-- 3 CRUD completos (preguntas, cuestionarios y usuario)
-- Creación de cursos (alumnos, cuestionarios)
-- Recuperación resultados curso
-- Petición preguntas de cuestionario 1 a 1 (aleatorio)
-- Petición preguntas de cuestionario todo.
+- 3 CRUD completos (usuarios, cuestionarios y preguntas)
+	- [x] Usuarios
+	- [x] Cuestionarios
+	- [ ] Preguntas
+- [x] Creación de cursos (alumnos, cuestionarios)
+- [ ] Recuperación resultados curso
+- [ ] Petición preguntas de cuestionario 1 a 1 (aleatorio)
+- [ ] Petición preguntas de cuestionario todo.
 
-## Realizado
-###### CRUD Usuario
+## CRUD Usuario
 **Listado de usuarios:**
 > (GET) localhost:8080/user
 
@@ -23,7 +23,7 @@
 **Eliminación de usuario**
 > (Delete) localhost:8080/user/{idUser}
 
-###### CRUD Curso
+## CRUD Curso
 **Listado de cursos:**
 > (GET) localhost:8080/course
 
@@ -36,10 +36,10 @@
 **Eliminación de curso**
 > (Delete) localhost:8080/course/{idCourse}
 
-###### Asignación de usuario a un curso
+## Asignación de usuario a un curso
 > (POST) localhost:8080/course/{idCourse}/user/{idUser}"
 
-###### CRUD Cuestionario
+## CRUD Cuestionario
 **Listado de cuestionarios del curso:**
 > (GET) localhost:8080/course/{idCourse}/cuestionary
 
