@@ -36,6 +36,9 @@ public class User {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = Result.FIELD_USER)
 	private List<Result> result;
 	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = Selection.FIELD_USER)
+	private List<Selection> selection;
+	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable (name= "user_course",
 			joinColumns= {@JoinColumn(name= "idUser")},

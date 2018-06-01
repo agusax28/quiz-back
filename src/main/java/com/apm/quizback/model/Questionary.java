@@ -38,6 +38,9 @@ public class Questionary {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = Result.FIELD_QUESTIONARY)
 	private List<Result> result;
 	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = Selection.FIELD_QUESTIONARY)
+	private List<Selection> selection;
+	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable (name= "tag_questionary",
 			joinColumns= {@JoinColumn(name= "idQuestionary")},
