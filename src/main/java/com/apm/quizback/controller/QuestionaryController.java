@@ -2,7 +2,6 @@ package com.apm.quizback.controller;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -40,10 +39,10 @@ public class QuestionaryController {
 	TagMapper tagMapper;
 	
 	@GetMapping
-	public Set<QuestionaryDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
+	public List<QuestionaryDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
 			@RequestParam(defaultValue = "10", required = false) Integer size,
 			@PathVariable("idCourse") Integer idCourse) throws NotFoundException {
-		final Set<Questionary> questionary = questionaryService.findAll(PageRequest.of(page, size), idCourse);
+		final List<Questionary> questionary = questionaryService.findAll(PageRequest.of(page, size), idCourse);
 		return questionaryMapper.modelToDto(questionary);
 	}
 

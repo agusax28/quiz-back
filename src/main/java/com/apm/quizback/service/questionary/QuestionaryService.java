@@ -2,7 +2,6 @@ package com.apm.quizback.service.questionary;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.data.domain.Pageable;
 
@@ -10,10 +9,11 @@ import com.apm.quizback.exception.InvalidDataException;
 import com.apm.quizback.exception.NotFoundException;
 import com.apm.quizback.model.Questionary;
 import com.apm.quizback.model.Tag;
+import com.apm.quizback.service.AbstractCRUDService;
 
-public interface QuestionaryService {
+public interface QuestionaryService extends AbstractCRUDService<Questionary, Integer>{
 
-	Set<Questionary> findAll(Pageable p, Integer idCourse) throws NotFoundException;
+	List<Questionary> findAll(Pageable p, Integer idCourse) throws NotFoundException;
 
 	Optional<Questionary> findById(Integer id, Integer idCourse) throws NotFoundException;
 
