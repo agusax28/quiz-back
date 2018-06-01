@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.apm.quizback.component.mapper.answer.AnswerMapper;
-import com.apm.quizback.dto.AnswerDTO;
+import com.apm.quizback.dto.answer.AnswerDTO;
 import com.apm.quizback.exception.InvalidDataException;
 import com.apm.quizback.exception.NotFoundException;
 import com.apm.quizback.model.Answer;
