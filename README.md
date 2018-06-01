@@ -53,3 +53,35 @@
 
 **Eliminación de cuestionario del curso**
 > (Delete) localhost:8080/course/{idCourse}/cuestionary/{idCuestionary}
+
+## Extra: CRUD TAG
+**Listado de tags:**
+> (GET) localhost:8080/tag
+
+**Creación de tag**
+> (POST) localhost:8080/tag
+
+**Edición de tag**
+> (PUT) localhost:8080/tag/{idTag}
+
+**Eliminación de tag**
+> (Delete) localhost:8080/tag/{idTag}
+
+**Listado de tags del cuestionario**
+> (GET) localhost:8080/course/{idCourse}/cuestionary/{idCuestionary}/tag
+
+**Asignación de tag al cuestionario**
+> (GET) localhost:8080/course/{idCourse}/cuestionary/{idCuestionary}/tag/{idTag}
+
+## Extra: CRUD Difficulty
+**Listado de dificultades:**
+> (GET) localhost:8080/difficulty
+
+**Creación de dificultad**
+> (POST) localhost:8080/difficulty
+
+**Edición de dificultad**
+> (PUT) localhost:8080/difficulty/{idDifficulty}
+
+**Eliminación de dificultad**
+> (Delete) localhost:8080/difficulty/{idDifficulty}
