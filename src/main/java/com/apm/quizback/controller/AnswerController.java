@@ -60,17 +60,27 @@ public class AnswerController {
 		return answerMapper.modelToDto(createAnswer);
 	}
 
-	@PutMapping("/answer/{id}")
-	public void update(@PathVariable("id") Integer id, @RequestBody AnswerDTO dto) throws InvalidDataException {
+	@PutMapping("/question/{idQuestion}/answer/{id}")
+	public void update(@PathVariable("id") Integer id, 
+			@PathVariable("idQuestion") Integer idQuestion, 
+			@RequestBody AnswerDTO dto) throws InvalidDataException, NotFoundException {
 		dto.setIdAnswer(id);
 		final Answer answer = answerMapper.dtoToModel(dto);
-		answerService.update(answer);
+		answerService.update(answer, idQuestion);
 	}
 
-	@DeleteMapping("/answer/{id}")
+	@DeleteMapping("/question/{idQuestion}/answer/{id}")
 	public void delete(@PathVariable Integer id) throws NotFoundException {
 		final Optional<Answer> answer = answerService.findById(id);
 		answerService.delete(answer.get());
+	}
+	
+	@DeleteMapping("/question/{idQuestion}/answer")
+	public void deleteAll(@PathVariable("idQuestion") Integer idQuestion) throws NotFoundException {
+		final List<Answer> answer = answerService.findAll(idQuestion);
+		answer.forEach(item -> {
+			answerService.delete(item);
+        });
 	}
 
 }

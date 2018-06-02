@@ -86,7 +86,17 @@ public class AnswerServiceImpl implements AnswerService {
 			answer.setQuestion(question.get());
 			return create(answer);
 		}
-		throw new NotFoundException("Question " + idQuestion + " has 4 answers.");
+		throw new InvalidDataException("Question " + idQuestion + " has 4 answers.");
+	}
+
+	@Override
+	public void update(Answer answer, Integer idQuestion) throws NotFoundException, InvalidDataException {
+		final Optional<Question> question = questionService.findById(idQuestion);
+		if(question.isPresent()) {
+			answer.setQuestion(question.get());
+			answerDao.save(answer);
+		}
+		throw new NotFoundException("Question " + idQuestion + " not found.");
 	}
 
 }

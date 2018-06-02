@@ -13,4 +13,6 @@ public interface AnswerService extends AbstractCRUDService<Answer, Integer>{
 
 	Answer create(Answer answer, Integer idQuestion) throws NotFoundException, InvalidDataException;
 
+	void update(Answer answer, Integer idQuestion) throws NotFoundException, InvalidDataException;
+
 }

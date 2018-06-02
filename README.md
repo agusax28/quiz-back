@@ -144,8 +144,11 @@
 {name, isCorrect}
 
 **Edición de respuesta**
-> (PUT) localhost:8080/answer/{idAnwer}
+> (PUT) localhost:8080/question/{idQuestion}/answer/{idAnwer}
 {name, isCorrect}
 
 **Eliminación de respuesta**
-> (DELETE) localhost:8080/answer/{idAnwer}
+> (DELETE) localhost:8080/question/{idQuestion}/answer/{idAnwer}
+
+**Eliminación de todas las respuestas de una pregunta**
+> (DELETE) localhost:8080/question/{idQuestion}/answer
