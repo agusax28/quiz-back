@@ -12,7 +12,7 @@ public class AnswerDTO implements Serializable {
 	private static final long serialVersionUID = -7326994064196156599L;
 	
 	private Integer idAnswer;
-	//private boolean isCorrect;
+	//private Boolean isCorrect;
 	private String name;
 	//private QuestionDTO question;
 	

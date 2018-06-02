@@ -9,7 +9,7 @@ public class AnswerPostDTO extends AnswerDTO {
 	
 	private static final long serialVersionUID = -9012397141077994021L;
 	
-	private boolean isCorrect;
+	private Boolean isCorrect;
 	private QuestionDTO question;
 	
 }

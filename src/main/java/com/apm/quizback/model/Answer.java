@@ -27,7 +27,7 @@ public class Answer {
 	private String name;
 	
 	@Column(nullable = false)
-	private boolean isCorrect;
+	private Boolean isCorrect;
 	
 	@JoinColumn(name = FIELD_QUESTION)
 	@ManyToOne(fetch = FetchType.LAZY)
