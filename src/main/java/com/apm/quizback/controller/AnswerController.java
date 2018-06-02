@@ -17,52 +17,60 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.apm.quizback.component.mapper.answer.AnswerMapper;
 import com.apm.quizback.dto.answer.AnswerDTO;
+import com.apm.quizback.dto.answer.AnswerPostDTO;
 import com.apm.quizback.exception.InvalidDataException;
 import com.apm.quizback.exception.NotFoundException;
 import com.apm.quizback.model.Answer;
 import com.apm.quizback.service.answer.AnswerService;
 
 @RestController
-@RequestMapping(value = "/answer")
+@RequestMapping
 public class AnswerController {
 
 	@Autowired
 	AnswerService answerService;
-	
+
 	@Autowired
 	AnswerMapper answerMapper;
-	
-	@GetMapping
+
+	@GetMapping("/answer")
 	public List<AnswerDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
 			@RequestParam(defaultValue = "10", required = false) Integer size) {
 		final List<Answer> answer = answerService.findAll(PageRequest.of(page, size));
 		return answerMapper.modelToDto(answer);
 	}
-	
-	@GetMapping("/{id}")
-	public AnswerDTO findById(@PathVariable Integer id) throws NotFoundException {
+
+	@GetMapping("/question/{idQuestion}/answer")
+	public List<AnswerDTO> findAll(@PathVariable("idQuestion") Integer idQuestion) throws NotFoundException {
+		final List<Answer> answer = answerService.findAll(idQuestion);
+		return answerMapper.modelToDto(answer);
+	}
+
+	@GetMapping("/answer/{id}")
+	public AnswerDTO findById(@PathVariable("id") Integer id) throws NotFoundException {
 		final Optional<Answer> answer = answerService.findById(id);
 		return answerMapper.modelToDto(answer.get());
 	}
-	
-	@PostMapping
-	public AnswerDTO create(@RequestBody AnswerDTO dto) throws InvalidDataException {
+
+	@PostMapping("/question/{idQuestion}/answer")
+	public AnswerDTO create(@RequestBody AnswerPostDTO dto,
+			@PathVariable("idQuestion") Integer idQuestion) throws InvalidDataException, NotFoundException {
 		final Answer answer = answerMapper.dtoToModel(dto);
-		final Answer createAnswer = answerService.create(answer);
+		final Answer createAnswer = answerService.create(answer, idQuestion);
 		return answerMapper.modelToDto(createAnswer);
 	}
-	
-	@PutMapping("/{id}")
-	public void update(@PathVariable Integer id, @RequestBody AnswerDTO dto) throws InvalidDataException {
+
+	@PutMapping("/answer/{id}")
+	public void update(@PathVariable("id") Integer id, @RequestBody AnswerDTO dto) throws InvalidDataException {
 		dto.setIdAnswer(id);
 		final Answer answer = answerMapper.dtoToModel(dto);
 		answerService.update(answer);
 	}
-	
-	@DeleteMapping("/{id}")
+
+	@DeleteMapping("/answer/{id}")
 	public void delete(@PathVariable Integer id) throws NotFoundException {
 		final Optional<Answer> answer = answerService.findById(id);
 		answerService.delete(answer.get());
 	}
-	
+
 }

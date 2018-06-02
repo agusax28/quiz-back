@@ -1,5 +1,6 @@
 package com.apm.quizback.dao;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -12,5 +13,7 @@ import com.apm.quizback.model.Question;
 public interface AnswerDAO extends PagingAndSortingRepository<Answer, Integer>{
 
 	Optional<Answer> findOneByQuestionOrderByIdAnswerDesc(Question question);
+	
+	Optional<List<Answer>> findByQuestionOrderByIdAnswer(Question question);
 	
 }

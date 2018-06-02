@@ -13,12 +13,17 @@ import com.apm.quizback.dao.AnswerDAO;
 import com.apm.quizback.exception.InvalidDataException;
 import com.apm.quizback.exception.NotFoundException;
 import com.apm.quizback.model.Answer;
+import com.apm.quizback.model.Question;
+import com.apm.quizback.service.question.QuestionService;
 
 @Service
-public class AnswerServiceImpl implements AnswerService{
-	
+public class AnswerServiceImpl implements AnswerService {
+
 	@Autowired
 	AnswerDAO answerDao;
+	
+	@Autowired
+	QuestionService questionService;
 
 	@Override
 	public Answer create(Answer t) throws InvalidDataException {
@@ -39,12 +44,11 @@ public class AnswerServiceImpl implements AnswerService{
 
 	@Override
 	public Optional<Answer> findById(Integer id) throws NotFoundException {
-		// return courseDao.findById(id);
-				final Optional<Answer> answer = answerDao.findById(id);
-				if (answer.isPresent()) {
-					return answer;
-				}
-				throw new NotFoundException("Answer " + id + " not found.");
+		final Optional<Answer> answer = answerDao.findById(id);
+		if (answer.isPresent()) {
+			return answer;
+		}
+		throw new NotFoundException("Answer " + id + " not found.");
 	}
 
 	@Override
@@ -62,6 +66,27 @@ public class AnswerServiceImpl implements AnswerService{
 	@Override
 	public boolean validate(Answer t) {
 		return t != null && t.getName() != null;
+	}
+
+	@Override
+	public List<Answer> findAll(Integer idQuestion) throws NotFoundException {
+		final Optional<Question> question = questionService.findById(idQuestion);
+		if(question.isPresent()) {
+			Optional<List<Answer>> answer = answerDao.findByQuestionOrderByIdAnswer(question.get());
+			return answer.get();
+		}
+		throw new NotFoundException("Question " + idQuestion + " not found.");
+	}
+
+	@Override
+	public Answer create(Answer answer, Integer idQuestion) throws NotFoundException, InvalidDataException {
+		final Optional<Question> question = questionService.findById(idQuestion);
+		Optional<List<Answer>> answers = answerDao.findByQuestionOrderByIdAnswer(question.get());
+		if(question.isPresent() && answers.get().size()<4) {
+			answer.setQuestion(question.get());
+			return create(answer);
+		}
+		throw new NotFoundException("Question " + idQuestion + " has 4 answers.");
 	}
 
 }

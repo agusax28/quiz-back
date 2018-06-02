@@ -4,7 +4,7 @@
 - [ ] 3 CRUD completos (usuarios, cuestionarios y preguntas)
 	- [x] Usuarios
 	- [x] Cuestionarios
-	- [ ] Preguntas
+	- [x] Preguntas
 - [x] Creación de cursos (alumnos, cuestionarios)
 	- [x] Alumnos (usuarios) asignados a curso
 	- [x] Al crear el cuestionario, es asignado en el curso (se crea dentro del curso)
@@ -131,3 +131,21 @@
 
 **Eliminación de dificultad**
 > (DELETE) localhost:8080/difficulty/{idDifficulty}
+
+## Extra: CRUD Respuesta
+**Listado de respuestas:**
+> (GET) localhost:8080/answer
+
+**Respuesta:**
+> (GET) localhost:8080/answer/{idAnwer}
+
+**Creación de respuesta**
+> (POST) localhost:8080/question/{idQuestion}/answer
+{name, isCorrect}
+
+**Edición de respuesta**
+> (PUT) localhost:8080/answer/{idAnwer}
+{name, isCorrect}
+
+**Eliminación de respuesta**
+> (DELETE) localhost:8080/answer/{idAnwer}
