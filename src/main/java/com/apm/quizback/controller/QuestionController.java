@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +23,7 @@ import com.apm.quizback.model.Question;
 import com.apm.quizback.service.question.QuestionService;
 
 @RestController
-//@RequestMapping(value = "/question")
+@RequestMapping
 public class QuestionController {
 	
 	@Autowired
@@ -31,7 +32,14 @@ public class QuestionController {
 	@Autowired
 	QuestionMapper questionMapper;
 	
-	@GetMapping("/cuestionary/{idQuestionary}/question")
+	@GetMapping("/question")
+	public List<QuestionDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
+			@RequestParam(defaultValue = "10", required = false) Integer size) throws NotFoundException {
+		final List<Question> question = questionService.findAll(PageRequest.of(page, size));
+		return questionMapper.modelToDto(question);
+	}
+	
+	@GetMapping("/questionary/{idQuestionary}/question")
 	public List<QuestionDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
 			@RequestParam(defaultValue = "10", required = false) Integer size,
 			@PathVariable ("idQuestionary") Integer idQuestionary) throws NotFoundException {
@@ -46,19 +54,23 @@ public class QuestionController {
 		return questionMapper.modelToDto(question.get());
 	}
 	
-	@PostMapping("/cuestionary/{idQuestionary}/question")
+	@PostMapping("/questionary/{idQuestionary}/question")
 	public QuestionDTO create(@RequestBody QuestionDTO dto, 
-			@PathVariable("idQuestionary") Integer idQuestionary) throws InvalidDataException, NotFoundException {
+			@PathVariable("idQuestionary") Integer idQuestionary, 
+			@RequestParam(defaultValue = "1", required = true) Integer tag,
+			@RequestParam(defaultValue = "1", required = true) Integer difficulty) throws InvalidDataException, NotFoundException {
 		final Question question = questionMapper.dtoToModel(dto);
-		final Question createQuestion = questionService.create(question, idQuestionary);
+		final Question createQuestion = questionService.create(question, idQuestionary, tag, difficulty);
 		return questionMapper.modelToDto(createQuestion);
 	}
 
 	@PutMapping("/question/{id}")
-	public void update(@PathVariable Integer id, @RequestBody QuestionDTO dto) throws InvalidDataException {
+	public void update(@PathVariable Integer id, @RequestBody QuestionDTO dto, 
+			@RequestParam(defaultValue = "1", required = true) Integer tag,
+			@RequestParam(defaultValue = "1", required = true) Integer difficulty) throws InvalidDataException, NotFoundException {
 		dto.setIdQuestion(id);
 		final Question question = questionMapper.dtoToModel(dto);
-		questionService.update(question);
+		questionService.update(question, tag, difficulty);
 	}
 
 	@DeleteMapping("/question/{id}")

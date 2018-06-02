@@ -11,6 +11,7 @@
 - [ ] Recuperación resultados curso
 - [ ] Petición preguntas de cuestionario 1 a 1 (aleatorio)
 - [ ] Petición preguntas de cuestionario todo.
+- [ ] Test de creación de cursos (del servicio)
 
 ## CRUD Usuario
 **Listado de usuarios:**
@@ -21,9 +22,11 @@
 
 **Creación de usuario**
 > (POST) localhost:8080/user
+{name, email, password}
 
 **Edición de usuario**
 > (PUT) localhost:8080/user/{idUser}
+{name, email, password}
 
 **Eliminación de usuario**
 > (DELETE) localhost:8080/user/{idUser}
@@ -37,9 +40,11 @@
 
 **Creación de curso**
 > (POST) localhost:8080/course
+{name}
 
 **Edición de curso**
 > (PUT) localhost:8080/course/{idCourse}
+{name}
 
 **Eliminación de curso**
 > (DELETE) localhost:8080/course/{idCourse}
@@ -59,9 +64,11 @@
 
 **Creación de cuestionario del curso**
 > (POST) localhost:8080/course/{idCourse}/questionary
+{name}
 
 **Edición de cuestionario del curso**
 > (PUT) localhost:8080/course/{idCourse}/questionary/{idQuestionary}
+{name}
 
 **Eliminación de cuestionario del curso**
 > (DELETE) localhost:8080/course/{idCourse}/questionary/{idQuestionary}
@@ -74,10 +81,12 @@
 > (GET) localhost:8080/question/{idQuestion}
 
 **Creación de pregunta del cuestionario**
-> (POST) localhost:8080/cuestionary/{idQuestionary}/question
+> (POST) localhost:8080/cuestionary/{idQuestionary}/question?tag={idTag}&difficulty={idDifficulty}
+{name}
 
 **Edición de pregunta**
-> (PUT) localhost:8080/question/{idQuestion}
+> (PUT) localhost:8080/question/{idQuestion}?tag={idTag}&difficulty={idDifficulty}
+{name}
 
 **Eliminación de pregunta**
 > (DELETE) localhost:8080/question/{idQuestion}
@@ -91,9 +100,11 @@
 
 **Creación de tag**
 > (POST) localhost:8080/tag
+{name}
 
 **Edición de tag**
 > (PUT) localhost:8080/tag/{idTag}
+{name}
 
 **Eliminación de tag**
 > (Delete) localhost:8080/tag/{idTag}
@@ -113,6 +124,7 @@
 
 **Creación de dificultad**
 > (POST) localhost:8080/difficulty
+{name}
 
 **Edición de dificultad**
 > (PUT) localhost:8080/difficulty/{idDifficulty}

@@ -13,6 +13,8 @@ public interface QuestionService extends AbstractCRUDService<Question, Integer>{
 
 	List<Question> findAll(Pageable p, Integer idQuestionary) throws NotFoundException;
 
-	Question create(Question question, Integer idQuestionary) throws NotFoundException, InvalidDataException;
+	Question create(Question question, Integer idQuestionary, Integer tag, Integer difficulty) throws NotFoundException, InvalidDataException;
+
+	void update(Question question, Integer tag, Integer difficulty) throws InvalidDataException, NotFoundException;
 	
 }
