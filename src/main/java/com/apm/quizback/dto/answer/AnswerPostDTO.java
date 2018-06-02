@@ -1,6 +1,6 @@
 package com.apm.quizback.dto.answer;
 
-import com.apm.quizback.dto.QuestionDTO;
+import com.apm.quizback.dto.question.QuestionDTO;
 
 import lombok.Data;
 

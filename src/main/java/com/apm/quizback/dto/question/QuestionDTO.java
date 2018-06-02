@@ -1,6 +1,9 @@
-package com.apm.quizback.dto;
+package com.apm.quizback.dto.question;
 
 import java.io.Serializable;
+
+import com.apm.quizback.dto.DifficultyDTO;
+import com.apm.quizback.dto.TagDTO;
 
 import lombok.Data;
 

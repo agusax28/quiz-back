@@ -2,7 +2,7 @@ package com.apm.quizback.dto.answer;
 
 import java.io.Serializable;
 
-import com.apm.quizback.dto.QuestionDTO;
+import com.apm.quizback.dto.question.QuestionDTO;
 
 import lombok.Data;
 

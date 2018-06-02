@@ -3,7 +3,7 @@ package com.apm.quizback.component.mapper.question;
 import org.springframework.stereotype.Component;
 
 import com.apm.quizback.component.mapper.AbstractMapper;
-import com.apm.quizback.dto.QuestionDTO;
+import com.apm.quizback.dto.question.QuestionDTO;
 import com.apm.quizback.model.Question;
 
 @Component

@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.apm.quizback.component.mapper.questionary.QuestionaryMapper;
 import com.apm.quizback.component.mapper.tag.TagMapper;
-import com.apm.quizback.dto.QuestionaryDTO;
 import com.apm.quizback.dto.TagDTO;
+import com.apm.quizback.dto.questionary.QuestionaryDTO;
 import com.apm.quizback.exception.InvalidDataException;
 import com.apm.quizback.exception.NotFoundException;
 import com.apm.quizback.model.Questionary;
