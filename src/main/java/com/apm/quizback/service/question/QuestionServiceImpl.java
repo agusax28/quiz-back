@@ -82,5 +82,14 @@ public class QuestionServiceImpl implements QuestionService {
 		throw new NotFoundException("Questionary " + idQuestionary + " not found.");
 	}
 
+	@Override
+	public Question create(Question question, Integer idQuestionary) throws NotFoundException, InvalidDataException {
+		final Optional<Questionary> questionary = questionaryService.findById(idQuestionary);
+		if (validate(question) && questionary.isPresent()) {
+			question.getQuestionary().add(questionary.get());
+			return questionDao.save(question);
+		}
+		throw new InvalidDataException("Question: Invalid Data");
+	}
 
 }

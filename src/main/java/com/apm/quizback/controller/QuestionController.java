@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +22,7 @@ import com.apm.quizback.model.Question;
 import com.apm.quizback.service.question.QuestionService;
 
 @RestController
-@RequestMapping(value = "/question")
+//@RequestMapping(value = "/question")
 public class QuestionController {
 	
 	@Autowired
@@ -47,21 +46,22 @@ public class QuestionController {
 		return questionMapper.modelToDto(question.get());
 	}
 	
-	@PostMapping
-	public QuestionDTO create(@RequestBody QuestionDTO dto) throws InvalidDataException {
+	@PostMapping("/cuestionary/{idQuestionary}/question")
+	public QuestionDTO create(@RequestBody QuestionDTO dto, 
+			@PathVariable("idQuestionary") Integer idQuestionary) throws InvalidDataException, NotFoundException {
 		final Question question = questionMapper.dtoToModel(dto);
-		final Question createQuestion = questionService.create(question);
+		final Question createQuestion = questionService.create(question, idQuestionary);
 		return questionMapper.modelToDto(createQuestion);
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("/question/{id}")
 	public void update(@PathVariable Integer id, @RequestBody QuestionDTO dto) throws InvalidDataException {
 		dto.setIdQuestion(id);
 		final Question question = questionMapper.dtoToModel(dto);
 		questionService.update(question);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/question/{id}")
 	public void delete(@PathVariable Integer id) throws NotFoundException {
 		final Optional<Question> question = questionService.findById(id);
 		questionService.delete(question.get());
