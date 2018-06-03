@@ -1,7 +1,9 @@
 package com.apm.quizback.service.questionary;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import com.apm.quizback.dao.QuestionaryDAO;
 import com.apm.quizback.exception.InvalidDataException;
 import com.apm.quizback.exception.NotFoundException;
 import com.apm.quizback.model.Course;
+import com.apm.quizback.model.Question;
 import com.apm.quizback.model.Questionary;
 import com.apm.quizback.model.Tag;
 import com.apm.quizback.service.course.CourseService;
@@ -24,10 +27,10 @@ public class QuestionaryServiceImpl implements QuestionaryService {
 
 	@Autowired
 	QuestionaryDAO questionaryDao;
-	
+
 	@Autowired
 	CourseService courseService;
-	
+
 	@Autowired
 	TagService tagService;
 
@@ -51,12 +54,12 @@ public class QuestionaryServiceImpl implements QuestionaryService {
 			throw new InvalidDataException("Questionary: Invalid Data");
 		}
 	}
-	
+
 	@Override
 	public Optional<Questionary> findById(Integer id, Integer idCourse) throws NotFoundException {
 		final Optional<Questionary> questionary = questionaryDao.findById(id);
 		Optional<Course> course = courseService.findById(idCourse);
-		if (questionary.isPresent() && questionary.get().getCourse() == course.get() ) {
+		if (questionary.isPresent() && questionary.get().getCourse() == course.get()) {
 			return questionary;
 		}
 		throw new NotFoundException("Questionary " + id + " not found.");
@@ -67,9 +70,10 @@ public class QuestionaryServiceImpl implements QuestionaryService {
 		int page = p.getPageNumber();
 		int size = p.getPageSize();
 		Optional<Course> course = courseService.findById(idCourse);
-		if(course.isPresent()) {
+		if (course.isPresent()) {
 			List<Questionary> questionary = course.get().getCuestionary();
-			return new PageImpl<Questionary>(questionary, PageRequest.of(page, size), questionary.size()).stream().collect(Collectors.toList());
+			return new PageImpl<Questionary>(questionary, PageRequest.of(page, size), questionary.size()).stream()
+					.collect(Collectors.toList());
 		}
 		throw new NotFoundException("Course " + idCourse + " not found.");
 	}
@@ -98,7 +102,7 @@ public class QuestionaryServiceImpl implements QuestionaryService {
 		int page = p.getPageNumber();
 		int size = p.getPageSize();
 		Optional<Questionary> questionary = questionaryDao.findById(id);
-		if(questionary.isPresent()) {
+		if (questionary.isPresent()) {
 			List<Tag> tag = questionary.get().getTag();
 			return new PageImpl<Tag>(tag, PageRequest.of(page, size), tag.size()).stream().collect(Collectors.toList());
 		}
@@ -138,4 +142,20 @@ public class QuestionaryServiceImpl implements QuestionaryService {
 		return questionaryDao.findAll(PageRequest.of(page, size)).stream().collect(Collectors.toList());
 	}
 
+	@Override
+	public Optional<Questionary> findQuestionExam(Integer idQuestionary, Integer idUser, Integer size)
+			throws NotFoundException {
+		Optional<Questionary> questionary = questionaryDao.findById(idQuestionary);
+		List<Question> questions = questionary.get().getQuestion();
+		List<Question> res = new ArrayList<Question>();
+		Random rand = new Random();
+		for (int i = 0; i < size; i++) {
+			int index = rand.nextInt(questions.size());
+			res.add(questions.get(index));
+			questions.remove(index);
+		}
+		questionary.get().setQuestion(res);
+		return questionary;
+	}
+	
 }

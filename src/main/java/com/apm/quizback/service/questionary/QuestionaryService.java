@@ -29,4 +29,6 @@ public interface QuestionaryService extends AbstractCRUDService<Questionary, Int
 
 	List<Tag> findAllTags(Pageable p, Integer id) throws NotFoundException;
 
+	Optional<Questionary> findQuestionExam(Integer idQuestionary, Integer idUser, Integer size) throws NotFoundException;
+
 }
