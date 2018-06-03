@@ -9,8 +9,8 @@
 	- [x] Alumnos (usuarios) asignados a curso
 	- [x] Al crear el cuestionario, es asignado en el curso (se crea dentro del curso)
 - [ ] Recuperación resultados curso
-- [ ] Petición preguntas de cuestionario 1 a 1 (aleatorio)
-- [ ] Petición preguntas de cuestionario todo.
+- [x] Petición preguntas de cuestionario 1 a 1 (aleatorio)
+- [x] Petición preguntas de cuestionario todo.
 - [ ] Test de creación de cursos (del servicio)
 
 ## CRUD Usuario
@@ -72,6 +72,22 @@
 
 **Eliminación de cuestionario del curso**
 > (DELETE) localhost:8080/course/{idCourse}/questionary/{idQuestionary}
+
+## Obtener Cuestionario Exam
+**Cuestionario con 10 preguntas aleatorias**
+> (GET) localhost:8080/user/{idUser}/questionary/{idQuestionary}
+
+**Cuestionario con 1 preguntas aleatorias**
+> (GET) localhost:8080/user/{idUser}/questionary/{idQuestionary}?size=1
+
+*DTO que muestra con fallo*
+Mostraría las preguntas desde el frontend, con el CRUD de las preguntas y respuestas, ya que tengo un questionary con el listado de las questions.
+
+## Almacenar Resultado Seleccionado
+**Cuestionario con 1 preguntas aleatorias**
+> (POST) localhost:8080/user/{idUser}/questionary/{idQuestionary}?question={idQuestion}&answer={idAnswer}
+
+*En front* esta llamada se haría al enviar el formulario
 
 ## CRUD Pregunta
 **Listado de pregunta del cuestionario:**
