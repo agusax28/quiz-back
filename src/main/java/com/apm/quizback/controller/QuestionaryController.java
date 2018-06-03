@@ -107,4 +107,5 @@ public class QuestionaryController {
 		final Optional<Questionary> questionary = questionaryService.findQuestionExam(idQuestionary, idUser, size); 
 		return examMapper.modelToDto(questionary.get());
 	}
+	
 }
