@@ -9,11 +9,14 @@
 	- [x] Alumnos (usuarios) asignados a curso
 	- [x] Al crear el cuestionario, es asignado en el curso (se crea dentro del curso)
 - [ ] Recuperación resultados curso
+	- [x] Repureación de todos los resultados
 - [ ] Petición de preguntas
 	- [x] Petición preguntas de cuestionario 1 a 1 (aleatorio)
 	- [x] Petición preguntas de cuestionario 10 (aleatorio)
 	- [ ] Mostrar preguntas seleccionadas por DTO junto al cuestionario
-- [ ] Test de creación de cursos (del servicio)
+- [x] Test de creación de cursos (del servicio)
+
+## TEST Creación curso
 
 ## CRUD Usuario
 **Listado de usuarios:**
@@ -90,6 +93,16 @@ Mostraría las preguntas desde el frontend, con el CRUD de las preguntas y respu
 > (POST) localhost:8080/user/{idUser}/questionary/{idQuestionary}?question={idQuestion}&answer={idAnswer}
 
 *En front* esta llamada se haría al enviar el formulario
+
+## Resultados
+*CRUD realizado en el service*
+**Listado de resultados**
+> (GET) localhost:8080/result
+
+**Listado de resultados por curso y usuario**
+> (GET) localhost:8080/user/{idUser}/course/{idCourse}/result
+
+Fallo al hacer la búsqueda en el DAO y no consigo encontrar el fallo, sin embargo, me parece que la lógica se ajusta
 
 ## CRUD Pregunta
 **Listado de pregunta del cuestionario:**
