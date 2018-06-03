@@ -13,4 +13,5 @@ public interface ResultDAO extends PagingAndSortingRepository<Result, Integer>{
 	//1
 	Optional<Result> findOneByIdResult(int id);
 
+	Result findOneByQuestionaryAndUser(int idQuestionary, int idUser);
 }
