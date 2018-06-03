@@ -17,6 +17,6 @@ public class SelectionDTO implements Serializable{
 	private QuestionaryDTO questionary;
 	private String question;
 	private String answer;
-	private Boolean isCorrect;
+	//private Boolean isCorrect;
 	
 }
