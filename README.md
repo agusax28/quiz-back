@@ -1,7 +1,7 @@
 # CursoJava - atSistemas (quiz-back)
 
 ## Requisitos
-- [ ] 3 CRUD completos (usuarios, cuestionarios y preguntas)
+- [x] 3 CRUD completos (usuarios, cuestionarios y preguntas)
 	- [x] Usuarios
 	- [x] Cuestionarios
 	- [x] Preguntas
@@ -9,8 +9,10 @@
 	- [x] Alumnos (usuarios) asignados a curso
 	- [x] Al crear el cuestionario, es asignado en el curso (se crea dentro del curso)
 - [ ] Recuperación resultados curso
-- [x] Petición preguntas de cuestionario 1 a 1 (aleatorio)
-- [x] Petición preguntas de cuestionario todo.
+- [ ] Petición de preguntas
+	- [x] Petición preguntas de cuestionario 1 a 1 (aleatorio)
+	- [x] Petición preguntas de cuestionario 10 (aleatorio)
+	- [ ] Mostrar preguntas seleccionadas por DTO junto al cuestionario
 - [ ] Test de creación de cursos (del servicio)
 
 ## CRUD Usuario
